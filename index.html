@@ -10,7 +10,7 @@
   </head>
   <body>
     <a href="#mainContent" class="skip-link">Skip to main content</a>
-    <header>
+    <header role="banner">
       <div class="container nav-container">
         <h1>Good Morning Limpopo News</h1>
         <button
@@ -21,7 +21,12 @@
         >
           &#9776;
         </button>
-        <nav id="navMenu" class="nav-menu">
+        <nav
+          id="navMenu"
+          class="nav-menu"
+          role="navigation"
+          aria-label="Primary navigation"
+        >
           <ul>
             <li>
               <a href="#inform"
@@ -64,7 +69,9 @@
       <div class="hero-content">
         <h2>Welcome to Limpopo's Voice</h2>
         <p>Your trusted source for local news, culture & community updates.</p>
-        <a href="news.html" class="hero-cta-button" role="button">See Today’s News</a>
+        <button class="hero-cta-button" onclick="location.href='news.html'">
+          See Today’s News
+        </button>
       </div>
       <div class="hero-glass-overlay"></div>
     </section>
@@ -78,25 +85,33 @@
         </p>
         <article class="news-article">
           <div class="article-header">
-            <time datetime="2024-04-15" class="article-date">April 15, 2024</time>
+            <time datetime="2024-04-15" class="article-date"
+              >April 15, 2024</time
+            >
             <h3>Village Water Supply Interruption</h3>
           </div>
           <p>
             Water supply will be interrupted in the Makhado area from 8 AM to 4
             PM on April 15 due to maintenance work.
           </p>
-          <a href="news.html#village-water-supply" class="read-more">Read More</a>
+          <a href="news.html#village-water-supply" class="read-more"
+            >Read More</a
+          >
         </article>
         <article class="news-article">
           <div class="article-header">
-            <time datetime="2024-04-10" class="article-date">April 10, 2024</time>
+            <time datetime="2024-04-10" class="article-date"
+              >April 10, 2024</time
+            >
             <h3>Municipal Road Repairs</h3>
           </div>
           <p>
             Road repairs will take place on Main Street, Polokwane from April 10
             to April 20. Expect delays and detours.
           </p>
-          <a href="news.html#municipal-road-repairs" class="read-more">Read More</a>
+          <a href="news.html#municipal-road-repairs" class="read-more"
+            >Read More</a
+          >
         </article>
         <input
           type="text"
@@ -139,24 +154,33 @@
           <button class="prev" aria-label="Previous slide">&#10094;</button>
           <div class="slides">
             <div class="slide active">
-              <img src="assets/music.jpg" alt="Local musician Sipho performing" />
+              <img
+                src="assets/music.jpg"
+                alt="Local musician Sipho performing"
+              />
               <div class="caption-overlay">
                 <p class="caption-title">Sipho - Local Musician</p>
-                <p class="caption-description">Performing at the community festival.</p>
+                <p class="caption-description">
+                  Performing at the community festival.
+                </p>
               </div>
             </div>
             <div class="slide">
-              <img src="assets/photography.jpg" alt="Photography by Thandi" />
+              <img src="assets/photography.jpg" alt="By Thandi" />
               <div class="caption-overlay">
                 <p class="caption-title">Thandi - Photographer</p>
-                <p class="caption-description">Showcasing Limpopo landscapes.</p>
+                <p class="caption-description">
+                  Showcasing Limpopo landscapes.
+                </p>
               </div>
             </div>
             <div class="slide">
               <img src="assets/arts.jpg" alt="Visual arts by youth" />
               <div class="caption-overlay">
                 <p class="caption-title">Youth Visual Artists</p>
-                <p class="caption-description">Exhibition by local youth artists.</p>
+                <p class="caption-description">
+                  Exhibition by local youth artists.
+                </p>
               </div>
             </div>
           </div>
@@ -171,19 +195,34 @@
           <li>
             <span class="event-icon" aria-hidden="true">🎵</span>
             <strong>April 20:</strong> Youth Music Festival at Polokwane Stadium
-            <button class="add-calendar" aria-label="Add Youth Music Festival to calendar">Add to calendar</button>
+            <button
+              class="add-calendar"
+              aria-label="Add Youth Music Festival to calendar"
+            >
+              Add to calendar
+            </button>
             <span class="countdown" data-date="2024-04-20T00:00:00"></span>
           </li>
           <li>
             <span class="event-icon" aria-hidden="true">🏥</span>
             <strong>April 25:</strong> Health Screening Drive in Makhado
-            <button class="add-calendar" aria-label="Add Health Screening Drive to calendar">Add to calendar</button>
+            <button
+              class="add-calendar"
+              aria-label="Add Health Screening Drive to calendar"
+            >
+              Add to calendar
+            </button>
             <span class="countdown" data-date="2024-04-25T00:00:00"></span>
           </li>
           <li>
             <span class="event-icon" aria-hidden="true">🎨</span>
             <strong>May 1:</strong> Art Exhibition Opening in Tzaneen
-            <button class="add-calendar" aria-label="Add Art Exhibition Opening to calendar">Add to calendar</button>
+            <button
+              class="add-calendar"
+              aria-label="Add Art Exhibition Opening to calendar"
+            >
+              Add to calendar
+            </button>
             <span class="countdown" data-date="2024-05-01T00:00:00"></span>
           </li>
         </ul>
@@ -211,7 +250,10 @@
           <button type="submit">Vote</button>
         </form>
         <div id="pollResult"></div>
-        <canvas id="pollChart" aria-label="Poll results chart" role="img" style="max-width: 100%; height: auto; display: none;"></canvas>
+        <canvas
+          id="pollChart"
+          aria-label="Poll results chart"
+        ></canvas>
       </section>
     </main>
 
@@ -233,7 +275,13 @@
           <p>Email: contact@gmlnews.co.za</p>
           <p>Phone: +27 123 456 7890</p>
           <p>
-            WhatsApp: <a href="https://wa.me/271234567890" target="_blank" rel="noopener noreferrer">Chat with us</a>
+            WhatsApp:
+            <a
+              href="https://wa.me/271234567890"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Chat with us</a
+            >
           </p>
         </div>
         <div class="footer-about">
@@ -244,7 +292,13 @@
           </p>
           <form id="newsletterForm">
             <label for="newsletterEmail">Subscribe to our newsletter:</label>
-            <input type="email" id="newsletterEmail" name="newsletterEmail" placeholder="Your email" required />
+            <input
+              type="email"
+              id="newsletterEmail"
+              name="newsletterEmail"
+              placeholder="Your email"
+              required
+            />
             <button type="submit">Subscribe</button>
           </form>
         </div>

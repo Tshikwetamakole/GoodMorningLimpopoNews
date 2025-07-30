@@ -58,6 +58,7 @@ function debounce(fn, delay) {
     // --- Poll functionality with animation and ARIA live ---
     const pollForm = document.getElementById("pollForm");
     const pollResult = document.getElementById("pollResult");
+    const pollChart = document.getElementById("pollChart");
     pollResult.setAttribute("role", "status");
     pollResult.setAttribute("aria-live", "polite");
     let pollVotes = { inform: 0, educate: 0, entertain: 0 };
@@ -87,9 +88,51 @@ function debounce(fn, delay) {
         </ul>
       `;
       pollResult.classList.add("visible");
+      pollChart.style.display = "block";
+      drawPollChart(pollVotes);
       setTimeout(() => pollResult.classList.remove("visible"), 2000);
       pollForm.reset();
     });
+
+    // Draw poll chart using canvas
+    function drawPollChart(votes) {
+      const ctx = pollChart.getContext("2d");
+      const totalVotes = Object.values(votes).reduce((a, b) => a + b, 0);
+      const data = [
+        { label: "Inform", value: votes.inform, color: "#ff6f00" },
+        { label: "Educate", value: votes.educate, color: "#ffca28" },
+        { label: "Entertain", value: votes.entertain, color: "#7bb661" },
+      ];
+      const width = pollChart.width;
+      const height = pollChart.height;
+      const radius = Math.min(width, height) / 2 - 20;
+      const centerX = width / 2;
+      const centerY = height / 2;
+
+      ctx.clearRect(0, 0, width, height);
+
+      let startAngle = 0;
+      data.forEach((slice) => {
+        const sliceAngle = (slice.value / totalVotes) * 2 * Math.PI;
+        ctx.beginPath();
+        ctx.moveTo(centerX, centerY);
+        ctx.arc(centerX, centerY, radius, startAngle, startAngle + sliceAngle);
+        ctx.closePath();
+        ctx.fillStyle = slice.color;
+        ctx.fill();
+
+        // Draw labels
+        const midAngle = startAngle + sliceAngle / 2;
+        const labelX = centerX + (radius / 1.5) * Math.cos(midAngle);
+        const labelY = centerY + (radius / 1.5) * Math.sin(midAngle);
+        ctx.fillStyle = "#fff";
+        ctx.font = "bold 14px Arial";
+        ctx.textAlign = "center";
+        ctx.fillText(slice.label, labelX, labelY);
+
+        startAngle += sliceAngle;
+      });
+    }
 
     // --- Debounced Search functionality for Inform articles ---
     const searchInput = document.getElementById("searchInput");
@@ -141,5 +184,38 @@ function debounce(fn, delay) {
       const url = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`;
       window.open(url, "_blank", "width=600,height=400");
     });
+
+    // --- Burger menu toggle ---
+    const burger = document.querySelector(".burger");
+    const navMenu = document.getElementById("navMenu");
+
+    burger.addEventListener("click", () => {
+      const expanded = burger.getAttribute("aria-expanded") === "true" || false;
+      burger.setAttribute("aria-expanded", !expanded);
+      burger.classList.toggle("open");
+      navMenu.classList.toggle("open");
+    });
+
+    // --- Event countdown timers ---
+    const countdownElements = document.querySelectorAll(".countdown");
+
+    function updateCountdowns() {
+      const now = new Date();
+      countdownElements.forEach((el) => {
+        const eventDate = new Date(el.getAttribute("data-date"));
+        const diff = eventDate - now;
+        if (diff <= 0) {
+          el.textContent = "Event is happening now or has passed";
+        } else {
+          const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+          const minutes = Math.floor((diff / (1000 * 60)) % 60);
+          el.textContent = `${days}d ${hours}h ${minutes}m left`;
+        }
+      });
+    }
+
+    updateCountdowns();
+    setInterval(updateCountdowns, 60000);
   });
 })();

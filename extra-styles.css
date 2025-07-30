@@ -10,13 +10,19 @@
   justify-content: center;
   color: var(--white, #fff);
   text-align: center;
+  overflow: hidden;
 }
 
-.hero-background::before {
-  content: "";
+.hero-glass-overlay {
   position: absolute;
-  inset: 0;
-  background-color: rgba(42, 93, 52, 0.6); /* overlay for readability */
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30%;
+  background: rgba(255, 255, 255, 0.15);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  pointer-events: none;
   z-index: 0;
 }
 
