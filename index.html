@@ -9,17 +9,51 @@
     <script defer src="scripts.js"></script>
   </head>
   <body>
+    <a href="#mainContent" class="skip-link">Skip to main content</a>
     <header>
-      <div class="container">
+      <div class="container nav-container">
         <h1>Good Morning Limpopo News</h1>
-        <nav>
+        <button
+          class="burger"
+          aria-label="Toggle navigation menu"
+          aria-expanded="false"
+          aria-controls="navMenu"
+        >
+          &#9776;
+        </button>
+        <nav id="navMenu" class="nav-menu">
           <ul>
-            <li><a href="#inform">Inform</a></li>
-            <li><a href="#educate">Educate</a></li>
-            <li><a href="#entertain">Entertain</a></li>
-            <li><a href="#events">Events</a></li>
-            <li><a href="#poll">Poll</a></li>
-            <li><a href="news.html">News</a></li>
+            <li>
+              <a href="#inform"
+                ><span class="nav-icon" aria-hidden="true">📢</span> Inform</a
+              >
+            </li>
+            <li>
+              <a href="#educate"
+                ><span class="nav-icon" aria-hidden="true">📚</span> Educate</a
+              >
+            </li>
+            <li>
+              <a href="#entertain"
+                ><span class="nav-icon" aria-hidden="true">🎵</span>
+                Entertain</a
+              >
+            </li>
+            <li>
+              <a href="#events"
+                ><span class="nav-icon" aria-hidden="true">📅</span> Events</a
+              >
+            </li>
+            <li>
+              <a href="#poll"
+                ><span class="nav-icon" aria-hidden="true">📊</span> Poll</a
+              >
+            </li>
+            <li>
+              <a href="news.html"
+                ><span class="nav-icon" aria-hidden="true">📰</span> News</a
+              >
+            </li>
           </ul>
         </nav>
       </div>
@@ -99,7 +133,7 @@
               <p>Local musician Sipho performing at the community festival.</p>
             </div>
             <div class="slide">
-              <img src="assets/photography.jpg" alt="Photography by youth" />
+              <img src="assets/photography.jpg" alt="By youth" />
               <p>Photography by Thandi showcasing Limpopo landscapes.</p>
             </div>
             <div class="slide">
