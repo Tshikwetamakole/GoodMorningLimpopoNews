@@ -43,6 +43,9 @@
     margin: 0 auto;
     padding: 0 1rem;
     transition: width 0.5s ease;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 
   /* Header */
@@ -491,6 +494,7 @@
   @media (max-width: 1024px) {
     .container {
       width: 98%;
+      grid-template-columns: 1fr;
     }
   }
 

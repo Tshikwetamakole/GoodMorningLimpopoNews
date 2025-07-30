@@ -1,0 +1,57 @@
+/* Extra styles for hero background and accessibility/animation enhancements */
+
+/* Homepage hero background */
+.hero-background {
+  position: relative;
+  background: url("./assets/hero.jpg") no-repeat center center/cover;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white, #fff);
+  text-align: center;
+}
+
+.hero-background::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(42, 93, 52, 0.6); /* overlay for readability */
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 90%;
+  padding: 2rem;
+}
+
+/* Enhance focus styles */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--focus, #1976d2);
+  outline-offset: 3px;
+}
+
+/* Optimize animations */
+button,
+input[type="submit"] {
+  will-change: transform, background;
+}
+
+section {
+  will-change: transform, box-shadow;
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
