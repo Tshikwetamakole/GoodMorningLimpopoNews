@@ -1,7 +1,7 @@
 /* scripts.js */
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Slider functionality with fade animation
+  // --- Slider functionality with fade animation and accessibility ---
   const slides = document.querySelectorAll(".slide");
   const prevBtn = document.querySelector(".prev");
   const nextBtn = document.querySelector(".next");
@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function showSlide(index) {
     slides.forEach((slide, i) => {
       slide.classList.toggle("active", i === index);
+      slide.setAttribute("aria-hidden", i !== index);
     });
   }
 
@@ -42,9 +43,11 @@ document.addEventListener("DOMContentLoaded", () => {
   showSlide(currentSlide);
   startSlideShow();
 
-  // Poll functionality with animation
+  // --- Poll functionality with animation and ARIA live ---
   const pollForm = document.getElementById("pollForm");
   const pollResult = document.getElementById("pollResult");
+  pollResult.setAttribute("role", "status");
+  pollResult.setAttribute("aria-live", "polite");
   let pollVotes = { inform: 0, educate: 0, entertain: 0 };
 
   pollForm.addEventListener("submit", (e) => {
@@ -52,6 +55,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const selectedOption = pollForm.pollOption.value;
     if (!selectedOption) {
       pollResult.textContent = "Please select an option before voting.";
+      pollResult.classList.add("visible");
+      setTimeout(() => pollResult.classList.remove("visible"), 2000);
       return;
     }
     pollVotes[selectedOption]++;
@@ -69,22 +74,31 @@ document.addEventListener("DOMContentLoaded", () => {
         <li>Entertain: ${percentages.entertain}% (${pollVotes.entertain} votes)</li>
       </ul>
     `;
-    pollResult.classList.add("pulse");
-    setTimeout(() => pollResult.classList.remove("pulse"), 2000);
+    pollResult.classList.add("visible");
+    setTimeout(() => pollResult.classList.remove("visible"), 2000);
     pollForm.reset();
   });
 
-  // Search functionality for Inform articles
+  // --- Debounced Search functionality for Inform articles ---
   const searchInput = document.getElementById("searchInput");
   const searchResults = document.getElementById("searchResults");
   const informArticles = Array.from(
     document.querySelectorAll("#inform .news-article")
   );
 
-  searchInput.addEventListener("input", () => {
+  function debounce(fn, delay) {
+    let timeout;
+    return (...args) => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => fn(...args), delay);
+    };
+  }
+
+  function handleSearch() {
     const query = searchInput.value.toLowerCase().trim();
     if (!query) {
       searchResults.textContent = "";
+      searchResults.style.opacity = 0;
       informArticles.forEach((article) => (article.style.display = ""));
       return;
     }
@@ -101,9 +115,14 @@ document.addEventListener("DOMContentLoaded", () => {
     searchResults.textContent = matches
       ? `${matches} article(s) found.`
       : "No articles found.";
-  });
+    searchResults.style.opacity = 1;
+    searchResults.classList.add("visible");
+    setTimeout(() => searchResults.classList.remove("visible"), 1200);
+  }
 
-  // Social share buttons
+  searchInput.addEventListener("input", debounce(handleSearch, 200));
+
+  // --- Social share buttons ---
   const shareFacebook = document.getElementById("shareFacebook");
   const shareTwitter = document.getElementById("shareTwitter");
   const pageUrl = encodeURIComponent(window.location.href);
