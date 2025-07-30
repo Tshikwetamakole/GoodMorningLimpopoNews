@@ -7,33 +7,43 @@ document.addEventListener("DOMContentLoaded", () => {
   const commentInput = document.getElementById("commentInput");
   const quizContainer = document.getElementById("quizContainer");
 
-  // Mock South African news data
-  const newsData = [
-    {
-      title: "South Africa's Economy Shows Signs of Recovery",
-      description:
-        "The latest reports indicate a positive trend in economic growth...",
-      url: "#",
-      source: "SA News",
-      publishedAt: "2024-04-10",
-    },
-    {
-      title: "Limpopo Province Launches New Health Initiative",
-      description:
-        "A new health program aimed at rural communities has been launched...",
-      url: "#",
-      source: "Limpopo Times",
-      publishedAt: "2024-04-12",
-    },
-    {
-      title: "Youth Arts Festival to Take Place in Polokwane",
-      description:
-        "The annual festival celebrating youth creativity will be held next month...",
-      url: "#",
-      source: "Creative SA",
-      publishedAt: "2024-04-15",
-    },
-  ];
+  // Fetch South African news from a public API (mocked here with sample data)
+  async function fetchNews() {
+    try {
+      // Example API: https://newsapi.org/ (requires API key)
+      // For demo, using mock data
+      const newsData = [
+        {
+          title: "South Africa's Economy Shows Signs of Recovery",
+          description:
+            "The latest reports indicate a positive trend in economic growth...",
+          url: "#",
+          source: "SA News",
+          publishedAt: "2024-04-10",
+        },
+        {
+          title: "Limpopo Province Launches New Health Initiative",
+          description:
+            "A new health program aimed at rural communities has been launched...",
+          url: "#",
+          source: "Limpopo Times",
+          publishedAt: "2024-04-12",
+        },
+        {
+          title: "Youth Arts Festival to Take Place in Polokwane",
+          description:
+            "The annual festival celebrating youth creativity will be held next month...",
+          url: "#",
+          source: "Creative SA",
+          publishedAt: "2024-04-15",
+        },
+      ];
+
+      displayNews(newsData);
+    } catch (error) {
+      newsContainer.innerHTML = `<p>Failed to load news. Please try again later.</p>`;
+    }
+  }
 
   function displayNews(newsItems) {
     if (!newsItems.length) {
@@ -135,6 +145,6 @@ document.addEventListener("DOMContentLoaded", () => {
     quizContainer.innerHTML += `<p>Your score: ${score} / ${quizQuestions.length}</p>`;
   }
 
-  displayNews(newsData);
+  fetchNews();
   loadQuiz();
 });

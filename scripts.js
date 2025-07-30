@@ -1,11 +1,12 @@
-// scripts.js
+/* scripts.js */
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Slider functionality
+  // Slider functionality with fade animation
   const slides = document.querySelectorAll(".slide");
   const prevBtn = document.querySelector(".prev");
   const nextBtn = document.querySelector(".next");
   let currentSlide = 0;
+  let slideInterval;
 
   function showSlide(index) {
     slides.forEach((slide, i) => {
@@ -13,19 +14,35 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  function startSlideShow() {
+    slideInterval = setInterval(() => {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }, 5000);
+  }
+
+  function stopSlideShow() {
+    clearInterval(slideInterval);
+  }
+
   prevBtn.addEventListener("click", () => {
+    stopSlideShow();
     currentSlide = (currentSlide - 1 + slides.length) % slides.length;
     showSlide(currentSlide);
+    startSlideShow();
   });
 
   nextBtn.addEventListener("click", () => {
+    stopSlideShow();
     currentSlide = (currentSlide + 1) % slides.length;
     showSlide(currentSlide);
+    startSlideShow();
   });
 
   showSlide(currentSlide);
+  startSlideShow();
 
-  // Poll functionality
+  // Poll functionality with animation
   const pollForm = document.getElementById("pollForm");
   const pollResult = document.getElementById("pollResult");
   let pollVotes = { inform: 0, educate: 0, entertain: 0 };
@@ -52,6 +69,8 @@ document.addEventListener("DOMContentLoaded", () => {
         <li>Entertain: ${percentages.entertain}% (${pollVotes.entertain} votes)</li>
       </ul>
     `;
+    pollResult.classList.add("pulse");
+    setTimeout(() => pollResult.classList.remove("pulse"), 2000);
     pollForm.reset();
   });
 
