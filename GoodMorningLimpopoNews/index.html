@@ -1,1 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Good Morning Limpopo News</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script defer src="scripts.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1>Good Morning Limpopo News</h1>
+        <nav>
+          <ul>
+            <li><a href="#inform">Inform</a></li>
+            <li><a href="#educate">Educate</a></li>
+            <li><a href="#entertain">Entertain</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#poll">Poll</a></li>
+            <li><a href="news.html">News</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
 
+    <main class="container">
+      <section id="inform">
+        <h2>Inform</h2>
+        <p>
+          Stay updated with the latest municipal and village alerts, service
+          interruptions, and local government news.
+        </p>
+        <article class="news-article">
+          <h3>Village Water Supply Interruption</h3>
+          <p>
+            Water supply will be interrupted in the Makhado area from 8 AM to 4
+            PM on April 15 due to maintenance work.
+          </p>
+        </article>
+        <article class="news-article">
+          <h3>Municipal Road Repairs</h3>
+          <p>
+            Road repairs will take place on Main Street, Polokwane from April 10
+            to April 20. Expect delays and detours.
+          </p>
+        </article>
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search Inform articles..."
+          aria-label="Search Inform articles"
+        />
+        <div id="searchResults"></div>
+      </section>
+
+      <section id="educate">
+        <h2>Educate</h2>
+        <p>
+          Educational content for youth and elders on new policies, community
+          initiatives, tech literacy, health, and economic development.
+        </p>
+        <article class="educate-article">
+          <h3>Understanding the New Water Policy</h3>
+          <p>
+            The Limpopo provincial government has introduced a new water
+            conservation policy aimed at sustainable usage.
+          </p>
+        </article>
+        <article class="educate-article">
+          <h3>Community Health Initiatives</h3>
+          <p>
+            Learn about upcoming health screenings and vaccination drives in
+            your area.
+          </p>
+        </article>
+      </section>
+
+      <section id="entertain">
+        <h2>Entertain</h2>
+        <p>
+          Showcasing youth creatives in Limpopo: music, photography, visual
+          arts, and performing arts.
+        </p>
+        <div class="slider">
+          <button class="prev" aria-label="Previous slide">&#10094;</button>
+          <div class="slides">
+            <div class="slide active">
+              <img src="assets/music.jpg" alt="Youth musician performing" />
+              <p>Local musician Sipho performing at the community festival.</p>
+            </div>
+            <div class="slide">
+              <img src="assets/photography.jpg" alt="Photography by youth" />
+              <p>Photography by Thandi showcasing Limpopo landscapes.</p>
+            </div>
+            <div class="slide">
+              <img src="assets/arts.jpg" alt="Visual arts by youth" />
+              <p>Visual arts exhibition by local youth artists.</p>
+            </div>
+          </div>
+          <button class="next" aria-label="Next slide">&#10095;</button>
+        </div>
+      </section>
+
+      <section id="events">
+        <h2>Community Events Calendar</h2>
+        <p>Upcoming events in Limpopo to keep you connected and involved.</p>
+        <ul class="event-list">
+          <li>
+            <strong>April 20:</strong> Youth Music Festival at Polokwane Stadium
+          </li>
+          <li><strong>April 25:</strong> Health Screening Drive in Makhado</li>
+          <li><strong>May 1:</strong> Art Exhibition Opening in Tzaneen</li>
+        </ul>
+      </section>
+
+      <section id="poll">
+        <h2>Community Poll</h2>
+        <p>
+          What type of content would you like to see more of on Good Morning
+          Limpopo News?
+        </p>
+        <form id="pollForm">
+          <label
+            ><input type="radio" name="pollOption" value="inform" />
+            Inform</label
+          ><br />
+          <label
+            ><input type="radio" name="pollOption" value="educate" />
+            Educate</label
+          ><br />
+          <label
+            ><input type="radio" name="pollOption" value="entertain" />
+            Entertain</label
+          ><br />
+          <button type="submit">Vote</button>
+        </form>
+        <div id="pollResult"></div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2024 Good Morning Limpopo News. All rights reserved.</p>
+        <div class="social-share">
+          <button id="shareFacebook" aria-label="Share on Facebook">
+            Facebook
+          </button>
+          <button id="shareTwitter" aria-label="Share on Twitter">
+            Twitter
+          </button>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
