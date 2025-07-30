@@ -196,6 +196,25 @@ function debounce(fn, delay) {
       navMenu.classList.toggle("open");
     });
 
+    // --- Hide/show header on scroll ---
+    const header = document.querySelector("header");
+    let lastScrollY = window.scrollY;
+
+    window.addEventListener(
+      "scroll",
+      debounce(() => {
+        const currentScrollY = window.scrollY;
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+          // Scrolling down and past 100px, hide header
+          header.classList.add("hidden");
+        } else {
+          // Scrolling up, show header
+          header.classList.remove("hidden");
+        }
+        lastScrollY = currentScrollY;
+      }, 100)
+    );
+
     // --- Event countdown timers ---
     const countdownElements = document.querySelectorAll(".countdown");
 
