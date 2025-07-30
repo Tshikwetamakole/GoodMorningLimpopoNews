@@ -41,6 +41,7 @@
 
         displayNews(newsData);
       } catch (error) {
+        console.error("Error fetching news:", error);
         newsContainer.innerHTML = `<p>Failed to load news. Please try again later.</p>`;
       }
     }
@@ -108,6 +109,19 @@
       },
     ];
 
+    function renderQuizOptions(options, questionIndex) {
+      return options
+        .map(
+          (opt) => `
+            <label>
+              <input type="radio" name="q${questionIndex}" value="${opt}" />
+              ${opt}
+            </label>
+          `
+        )
+        .join("");
+    }
+
     function loadQuiz() {
       quizContainer.innerHTML = "";
       quizQuestions.forEach((q, i) => {
@@ -115,16 +129,7 @@
         div.classList.add("quiz-question");
         div.innerHTML = `
           <p><strong>Q${i + 1}:</strong> ${q.question}</p>
-          ${q.options
-            .map(
-              (opt) => `
-            <label>
-              <input type="radio" name="q${i}" value="${opt}" />
-              ${opt}
-            </label>
-          `
-            )
-            .join("")}
+          ${renderQuizOptions(q.options, i)}
         `;
         quizContainer.appendChild(div);
       });

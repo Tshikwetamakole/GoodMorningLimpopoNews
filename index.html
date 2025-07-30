@@ -64,7 +64,9 @@
       <div class="hero-content">
         <h2>Welcome to Limpopo's Voice</h2>
         <p>Your trusted source for local news, culture & community updates.</p>
+        <a href="news.html" class="hero-cta-button" role="button">See Today’s News</a>
       </div>
+      <div class="hero-glass-overlay"></div>
     </section>
 
     <main class="container">
@@ -75,18 +77,26 @@
           interruptions, and local government news.
         </p>
         <article class="news-article">
-          <h3>Village Water Supply Interruption</h3>
+          <div class="article-header">
+            <time datetime="2024-04-15" class="article-date">April 15, 2024</time>
+            <h3>Village Water Supply Interruption</h3>
+          </div>
           <p>
             Water supply will be interrupted in the Makhado area from 8 AM to 4
             PM on April 15 due to maintenance work.
           </p>
+          <a href="news.html#village-water-supply" class="read-more">Read More</a>
         </article>
         <article class="news-article">
-          <h3>Municipal Road Repairs</h3>
+          <div class="article-header">
+            <time datetime="2024-04-10" class="article-date">April 10, 2024</time>
+            <h3>Municipal Road Repairs</h3>
+          </div>
           <p>
             Road repairs will take place on Main Street, Polokwane from April 10
             to April 20. Expect delays and detours.
           </p>
+          <a href="news.html#municipal-road-repairs" class="read-more">Read More</a>
         </article>
         <input
           type="text"
@@ -129,16 +139,25 @@
           <button class="prev" aria-label="Previous slide">&#10094;</button>
           <div class="slides">
             <div class="slide active">
-              <img src="assets/music.jpg" alt="Youth musician performing" />
-              <p>Local musician Sipho performing at the community festival.</p>
+              <img src="assets/music.jpg" alt="Local musician Sipho performing" />
+              <div class="caption-overlay">
+                <p class="caption-title">Sipho - Local Musician</p>
+                <p class="caption-description">Performing at the community festival.</p>
+              </div>
             </div>
             <div class="slide">
-              <img src="assets/photography.jpg" alt="By youth" />
-              <p>Photography by Thandi showcasing Limpopo landscapes.</p>
+              <img src="assets/photography.jpg" alt="Photography by Thandi" />
+              <div class="caption-overlay">
+                <p class="caption-title">Thandi - Photographer</p>
+                <p class="caption-description">Showcasing Limpopo landscapes.</p>
+              </div>
             </div>
             <div class="slide">
               <img src="assets/arts.jpg" alt="Visual arts by youth" />
-              <p>Visual arts exhibition by local youth artists.</p>
+              <div class="caption-overlay">
+                <p class="caption-title">Youth Visual Artists</p>
+                <p class="caption-description">Exhibition by local youth artists.</p>
+              </div>
             </div>
           </div>
           <button class="next" aria-label="Next slide">&#10095;</button>
@@ -150,10 +169,23 @@
         <p>Upcoming events in Limpopo to keep you connected and involved.</p>
         <ul class="event-list">
           <li>
+            <span class="event-icon" aria-hidden="true">🎵</span>
             <strong>April 20:</strong> Youth Music Festival at Polokwane Stadium
+            <button class="add-calendar" aria-label="Add Youth Music Festival to calendar">Add to calendar</button>
+            <span class="countdown" data-date="2024-04-20T00:00:00"></span>
           </li>
-          <li><strong>April 25:</strong> Health Screening Drive in Makhado</li>
-          <li><strong>May 1:</strong> Art Exhibition Opening in Tzaneen</li>
+          <li>
+            <span class="event-icon" aria-hidden="true">🏥</span>
+            <strong>April 25:</strong> Health Screening Drive in Makhado
+            <button class="add-calendar" aria-label="Add Health Screening Drive to calendar">Add to calendar</button>
+            <span class="countdown" data-date="2024-04-25T00:00:00"></span>
+          </li>
+          <li>
+            <span class="event-icon" aria-hidden="true">🎨</span>
+            <strong>May 1:</strong> Art Exhibition Opening in Tzaneen
+            <button class="add-calendar" aria-label="Add Art Exhibition Opening to calendar">Add to calendar</button>
+            <span class="countdown" data-date="2024-05-01T00:00:00"></span>
+          </li>
         </ul>
       </section>
 
@@ -179,11 +211,43 @@
           <button type="submit">Vote</button>
         </form>
         <div id="pollResult"></div>
+        <canvas id="pollChart" aria-label="Poll results chart" role="img" style="max-width: 100%; height: auto; display: none;"></canvas>
       </section>
     </main>
 
     <footer>
-      <div class="container">
+      <div class="container footer-container">
+        <div class="footer-links">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="#inform">Inform</a></li>
+            <li><a href="#educate">Educate</a></li>
+            <li><a href="#entertain">Entertain</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#poll">Poll</a></li>
+            <li><a href="news.html">News</a></li>
+          </ul>
+        </div>
+        <div class="footer-contact">
+          <h3>Contact Us</h3>
+          <p>Email: contact@gmlnews.co.za</p>
+          <p>Phone: +27 123 456 7890</p>
+          <p>
+            WhatsApp: <a href="https://wa.me/271234567890" target="_blank" rel="noopener noreferrer">Chat with us</a>
+          </p>
+        </div>
+        <div class="footer-about">
+          <h3>About Us</h3>
+          <p>
+            Good Morning Limpopo News is your trusted community platform for
+            news, culture, and events in Limpopo.
+          </p>
+          <form id="newsletterForm">
+            <label for="newsletterEmail">Subscribe to our newsletter:</label>
+            <input type="email" id="newsletterEmail" name="newsletterEmail" placeholder="Your email" required />
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
         <p>&copy; 2024 Good Morning Limpopo News. All rights reserved.</p>
         <div class="social-share">
           <button id="shareFacebook" aria-label="Share on Facebook">

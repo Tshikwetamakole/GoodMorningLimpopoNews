@@ -1,3 +1,15 @@
+// Debounce utility function moved outside to reduce nesting
+function debounce(fn, delay) {
+  let timeout;
+  function callFn(args) {
+    fn(...args);
+  }
+  return (...args) => {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => callFn(args), delay);
+  };
+}
+
 (() => {
   // Encapsulate all code to avoid global scope pollution
   document.addEventListener("DOMContentLoaded", () => {
@@ -85,14 +97,6 @@
     const informArticles = Array.from(
       document.querySelectorAll("#inform .news-article")
     );
-
-    function debounce(fn, delay) {
-      let timeout;
-      return (...args) => {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => fn(...args), delay);
-      };
-    }
 
     function handleSearch() {
       const query = searchInput.value.toLowerCase().trim();
